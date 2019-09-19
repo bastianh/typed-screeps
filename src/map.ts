@@ -57,11 +57,13 @@ interface GameMap {
      * @param x X position in the room.
      * @param y Y position in the room.
      * @param roomName The room name.
+     * @deprecated This method is deprecated and will be removed soon. Please use a faster method Game.map.getRoomTerrain instead.
      */
     getTerrainAt(x: number, y: number, roomName: string): Terrain;
     /**
      * Get terrain type at the specified room position. This method works for any room in the world even if you have no access to it.
      * @param pos The position object.
+     * @deprecated This method is deprecated and will be removed soon. Please use a faster method Game.map.getRoomTerrain instead.
      */
     getTerrainAt(pos: RoomPosition): Terrain;
     /**

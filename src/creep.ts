@@ -12,10 +12,12 @@ interface Creep extends RoomObject {
     body: BodyPartDefinition[];
     /**
      * An object with the creep's cargo contents.
+     * @deprecated This property is deprecated and will be removed soon.
      */
     carry: StoreDefinition;
     /**
      * The total amount of resources the creep can carry.
+     * @deprecated This property is deprecated and will be removed soon.
      */
     carryCapacity: number;
     /**
@@ -54,6 +56,10 @@ interface Creep extends RoomObject {
      * The link to the Room object. Always defined because creeps give visibility into the room they're in.
      */
     room: Room;
+    /**
+     * A Store object that contains cargo of this creep.
+     */
+    store: Store;
     /**
      * Whether this creep is still being spawned.
      */

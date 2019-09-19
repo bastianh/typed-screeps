@@ -148,10 +148,12 @@ interface StructureExtension extends OwnedStructure<STRUCTURE_EXTENSION> {
 
     /**
      * The amount of energy containing in the extension.
+     * @deprecated This property is deprecated and will be removed soon. (use .store[RESOURCE_ENERGY])
      */
     energy: number;
     /**
      * The total amount of energy the extension can contain.
+     * @deprecated This property is deprecated and will be removed soon. (use .store.getCapacity(RESOURCE_ENERGY))
      */
     energyCapacity: number;
 }
@@ -172,10 +174,12 @@ interface StructureLink extends OwnedStructure<STRUCTURE_LINK> {
     cooldown: number;
     /**
      * The amount of energy containing in the link.
+     * @deprecated This property is deprecated and will be removed soon. (use .store[RESOURCE_ENERGY])
      */
     energy: number;
     /**
      * The total amount of energy the link can contain.
+     * @deprecated This property is deprecated and will be removed soon. (use .store.getCapacity(RESOURCE_ENERGY))
      */
     energyCapacity: number;
     /**
@@ -258,10 +262,12 @@ interface StructurePowerSpawn extends OwnedStructure<STRUCTURE_POWER_SPAWN> {
     readonly prototype: StructurePowerSpawn;
     /**
      * The amount of energy containing in this structure.
+     * @deprecated This property is deprecated and will be removed soon. (use .store[RESOURCE_ENERGY])
      */
     energy: number;
     /**
      * The total amount of energy this structure can contain.
+     * @deprecated This property is deprecated and will be removed soon. (use .store.getCapacity(RESOURCE_ENERGY))
      */
     energyCapacity: number;
     /**
@@ -341,6 +347,7 @@ interface StructureStorage extends OwnedStructure<STRUCTURE_STORAGE> {
     store: StoreDefinition;
     /**
      * The total amount of resources the storage can contain.
+     * @deprecated This property is deprecated and will be removed soon. (Use .store.getCapacity())
      */
     storeCapacity: number;
 }
@@ -359,10 +366,12 @@ interface StructureTower extends OwnedStructure<STRUCTURE_TOWER> {
 
     /**
      * The amount of energy containing in this structure.
+     * @deprecated This property is deprecated and will be removed soon. (use .store[RESOURCE_ENERGY])
      */
     energy: number;
     /**
      * The total amount of energy this structure can contain.
+     * @deprecated This property is deprecated and will be removed soon. (use .store.getCapacity(RESOURCE_ENERGY))
      */
     energyCapacity: number;
 
@@ -428,10 +437,12 @@ interface StructureLab extends OwnedStructure<STRUCTURE_LAB> {
     cooldown: number;
     /**
      * The amount of energy containing in the lab. Energy is used for boosting creeps.
+     * @deprecated This property is deprecated and will be removed soon. (use .store[RESOURCE_ENERGY])
      */
     energy: number;
     /**
      * The total amount of energy the lab can contain.
+     * @deprecated This property is deprecated and will be removed soon. (use .store.getCapacity(RESOURCE_ENERGY))
      */
     energyCapacity: number;
     /**
@@ -535,10 +546,12 @@ interface StructureNuker extends OwnedStructure<STRUCTURE_NUKER> {
     readonly prototype: StructureNuker;
     /**
      * The amount of energy contained in this structure.
+     * @deprecated This property is deprecated and will be removed soon. (use .store[RESOURCE_ENERGY])
      */
     energy: number;
     /**
      * The total amount of energy this structure can contain.
+     * @deprecated This property is deprecated and will be removed soon. (use .store.getCapacity(RESOURCE_ENERGY))
      */
     energyCapacity: number;
     /**

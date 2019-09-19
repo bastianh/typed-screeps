@@ -932,10 +932,12 @@ interface Creep extends RoomObject {
     body: BodyPartDefinition[];
     /**
      * An object with the creep's cargo contents.
+     * @deprecated This property is deprecated and will be removed soon.
      */
     carry: StoreDefinition;
     /**
      * The total amount of resources the creep can carry.
+     * @deprecated This property is deprecated and will be removed soon.
      */
     carryCapacity: number;
     /**
@@ -974,6 +976,10 @@ interface Creep extends RoomObject {
      * The link to the Room object. Always defined because creeps give visibility into the room they're in.
      */
     room: Room;
+    /**
+     * A Store object that contains cargo of this creep.
+     */
+    store: Store;
     /**
      * Whether this creep is still being spawned.
      */
@@ -2425,11 +2431,13 @@ interface GameMap {
      * @param x X position in the room.
      * @param y Y position in the room.
      * @param roomName The room name.
+     * @deprecated This method is deprecated and will be removed soon. Please use a faster method Game.map.getRoomTerrain instead.
      */
     getTerrainAt(x: number, y: number, roomName: string): Terrain;
     /**
      * Get terrain type at the specified room position. This method works for any room in the world even if you have no access to it.
      * @param pos The position object.
+     * @deprecated This method is deprecated and will be removed soon. Please use a faster method Game.map.getRoomTerrain instead.
      */
     getTerrainAt(pos: RoomPosition): Terrain;
     /**
@@ -4146,6 +4154,43 @@ interface SpawnOptions {
 
 interface SpawningConstructor extends _Constructor<Spawning>, _ConstructorById<Spawning> { }
 /**
+ * Store
+ * An object that can contain resources in its cargo.
+ * There are two types of stores in the game: general purpose stores and limited stores.
+ * General purpose stores can contain any resource within its capacity (e.g. creeps, containers, storages, terminals).
+ * Limited stores can contain only a few types of resources needed for that particular object (e.g. spawns, extensions, labs, nukers).
+ * The Store prototype is the same for both types of stores, but they have different behavior depending on the resource argument in its methods.
+ */
+interface Store extends StoreDefinition {
+    /**
+     * Returns capacity of this store for the specified resource.
+     * @param resourceType One of the RESOURCE_* constants.
+     */
+    getCapacity(resourceType: ResourceConstant | undefined): number | null;
+    /**
+     * Returns the total capacity of the store.
+     */
+    getCapacity(): number;
+    /**
+     * A shorthand for getCapacity(resource) - getUsedCapacity(resource).
+     * @param resourceType One of the RESOURCE_* constants.
+     */
+    getFreeCapacity(resourceType: ResourceConstant | undefined): number | null;
+    /**
+     * A shorthand for getCapacity() - getUsedCapacity().
+     */
+    getFreeCapacity(): number;
+    /**
+     * Returns the capacity used by the specified resource.
+     * @param resourceType One of the RESOURCE_* constants.
+     */
+    getUsedCapacity(resourceType: ResourceConstant | undefined): number | null;
+    /**
+     * Returns the total used capacity for general purpose store.
+     */
+    getUsedCapacity(): number;
+}
+/**
  * Parent object for structure classes
  */
 interface Structure<T extends StructureConstant = StructureConstant> extends RoomObject {
@@ -4295,10 +4340,12 @@ interface StructureExtension extends OwnedStructure<STRUCTURE_EXTENSION> {
 
     /**
      * The amount of energy containing in the extension.
+     * @deprecated This property is deprecated and will be removed soon. (use .store[RESOURCE_ENERGY])
      */
     energy: number;
     /**
      * The total amount of energy the extension can contain.
+     * @deprecated This property is deprecated and will be removed soon. (use .store.getCapacity(RESOURCE_ENERGY))
      */
     energyCapacity: number;
 }
@@ -4319,10 +4366,12 @@ interface StructureLink extends OwnedStructure<STRUCTURE_LINK> {
     cooldown: number;
     /**
      * The amount of energy containing in the link.
+     * @deprecated This property is deprecated and will be removed soon. (use .store[RESOURCE_ENERGY])
      */
     energy: number;
     /**
      * The total amount of energy the link can contain.
+     * @deprecated This property is deprecated and will be removed soon. (use .store.getCapacity(RESOURCE_ENERGY))
      */
     energyCapacity: number;
     /**
@@ -4405,10 +4454,12 @@ interface StructurePowerSpawn extends OwnedStructure<STRUCTURE_POWER_SPAWN> {
     readonly prototype: StructurePowerSpawn;
     /**
      * The amount of energy containing in this structure.
+     * @deprecated This property is deprecated and will be removed soon. (use .store[RESOURCE_ENERGY])
      */
     energy: number;
     /**
      * The total amount of energy this structure can contain.
+     * @deprecated This property is deprecated and will be removed soon. (use .store.getCapacity(RESOURCE_ENERGY))
      */
     energyCapacity: number;
     /**
@@ -4488,6 +4539,7 @@ interface StructureStorage extends OwnedStructure<STRUCTURE_STORAGE> {
     store: StoreDefinition;
     /**
      * The total amount of resources the storage can contain.
+     * @deprecated This property is deprecated and will be removed soon. (Use .store.getCapacity())
      */
     storeCapacity: number;
 }
@@ -4506,10 +4558,12 @@ interface StructureTower extends OwnedStructure<STRUCTURE_TOWER> {
 
     /**
      * The amount of energy containing in this structure.
+     * @deprecated This property is deprecated and will be removed soon. (use .store[RESOURCE_ENERGY])
      */
     energy: number;
     /**
      * The total amount of energy this structure can contain.
+     * @deprecated This property is deprecated and will be removed soon. (use .store.getCapacity(RESOURCE_ENERGY))
      */
     energyCapacity: number;
 
@@ -4575,10 +4629,12 @@ interface StructureLab extends OwnedStructure<STRUCTURE_LAB> {
     cooldown: number;
     /**
      * The amount of energy containing in the lab. Energy is used for boosting creeps.
+     * @deprecated This property is deprecated and will be removed soon. (use .store[RESOURCE_ENERGY])
      */
     energy: number;
     /**
      * The total amount of energy the lab can contain.
+     * @deprecated This property is deprecated and will be removed soon. (use .store.getCapacity(RESOURCE_ENERGY))
      */
     energyCapacity: number;
     /**
@@ -4682,10 +4738,12 @@ interface StructureNuker extends OwnedStructure<STRUCTURE_NUKER> {
     readonly prototype: StructureNuker;
     /**
      * The amount of energy contained in this structure.
+     * @deprecated This property is deprecated and will be removed soon. (use .store[RESOURCE_ENERGY])
      */
     energy: number;
     /**
      * The total amount of energy this structure can contain.
+     * @deprecated This property is deprecated and will be removed soon. (use .store.getCapacity(RESOURCE_ENERGY))
      */
     energyCapacity: number;
     /**
