@@ -4365,6 +4365,10 @@ interface StructureLink extends OwnedStructure<STRUCTURE_LINK> {
      */
     cooldown: number;
     /**
+     * A Store object that contains cargo of this structure.
+     */
+    store: Store;
+    /**
      * The amount of energy containing in the link.
      * @deprecated This property is deprecated and will be removed soon. (use .store[RESOURCE_ENERGY])
      */
@@ -4462,6 +4466,10 @@ interface StructurePowerSpawn extends OwnedStructure<STRUCTURE_POWER_SPAWN> {
      * @deprecated This property is deprecated and will be removed soon. (use .store.getCapacity(RESOURCE_ENERGY))
      */
     energyCapacity: number;
+    /**
+     * A Store object that contains cargo of this structure.
+     */
+    store: Store;
     /**
      * The amount of power containing in this structure.
      */
@@ -4566,6 +4574,10 @@ interface StructureTower extends OwnedStructure<STRUCTURE_TOWER> {
      * @deprecated This property is deprecated and will be removed soon. (use .store.getCapacity(RESOURCE_ENERGY))
      */
     energyCapacity: number;
+    /**
+     * A Store object that contains cargo of this structure.
+     */
+    store: Store;
 
     /**
      * Remotely attack any creep in the room. Consumes 10 energy units per tick. Attack power depends on the distance to the target: from 600 hits at range 10 to 300 hits at range 40.
@@ -4628,6 +4640,10 @@ interface StructureLab extends OwnedStructure<STRUCTURE_LAB> {
      */
     cooldown: number;
     /**
+     * A Store object that contains cargo of this structure.
+     */
+    store: Store;
+    /**
      * The amount of energy containing in the lab. Energy is used for boosting creeps.
      * @deprecated This property is deprecated and will be removed soon. (use .store[RESOURCE_ENERGY])
      */
@@ -4638,7 +4654,8 @@ interface StructureLab extends OwnedStructure<STRUCTURE_LAB> {
      */
     energyCapacity: number;
     /**
-     * The amount of mineral resources containing in the lab.
+     * The amount of mineral resources containing in the lab
+     * @deprecated This property is deprecated and will be removed soon. (use .store[lab.mineralType]).
      */
     mineralAmount: number;
     /**
@@ -4648,6 +4665,7 @@ interface StructureLab extends OwnedStructure<STRUCTURE_LAB> {
     mineralType: _ResourceConstantSansEnergy | null;
     /**
      * The total amount of minerals the lab can contain.
+     * @deprecated This property is deprecated and will be removed soon. (use .store.getCapacity(<MineralType>)).
      */
     mineralCapacity: number;
     /**
